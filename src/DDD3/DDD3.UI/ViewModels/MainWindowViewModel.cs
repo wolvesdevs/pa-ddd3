@@ -25,12 +25,14 @@ public class MainWindowViewModel : BindableBase
 
     public DelegateCommand SystemDateUpdateButton { get; }
     public DelegateCommand ShowViewAButton { get; }
+    public DelegateCommand ShowViewPButton { get; }
 
     public MainWindowViewModel(IRegionManager regionManager)
     {
         _regionManager = regionManager;
         SystemDateUpdateButton = new DelegateCommand(SystemDateUpdateButtonExecute);
         ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute);
+        ShowViewPButton = new DelegateCommand(ShowViewPButtonExecute);
     }
 
     private void SystemDateUpdateButtonExecute()
@@ -41,5 +43,12 @@ public class MainWindowViewModel : BindableBase
     private void ShowViewAButtonExecute()
     {
         _regionManager.RequestNavigate("ContentRegion", nameof(ViewA));
+    }
+
+    private void ShowViewPButtonExecute()
+    {
+        var p = new NavigationParameters();
+        p.Add(nameof(ViewAViewModel.MyLabel), SystemDateLabel);
+        _regionManager.RequestNavigate("ContentRegion", nameof(ViewA), p);
     }
 }
