@@ -47,7 +47,7 @@ public class MainWindowViewModel : BindableBase
 
     private void ShowViewPButtonExecute()
     {
-        var p = new NavigationParameters();
+        NavigationParameters p = new();
         p.Add(nameof(ViewAViewModel.MyLabel), SystemDateLabel);
         _regionManager.RequestNavigate("ContentRegion", nameof(ViewA), p);
     }
