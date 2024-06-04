@@ -1,13 +1,11 @@
-﻿<UserControl x:Class="DDD3.UI.Views.ViewA"
+﻿<UserControl x:Class="DDD3.UI.Views.ViewB"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
         <StackPanel>
-            <Label Content="画面A" FontSize="30" Foreground="Brown"/>
-            <Label Content="{Binding MyLabel}"/>
-            <TextBox/>
+            <Label Content="ViewB画面" FontSize="40" Foreground="Red"/>
         </StackPanel>
     </Grid>
 </UserControl>

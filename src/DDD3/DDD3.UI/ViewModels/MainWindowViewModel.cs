@@ -2,13 +2,14 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 
 namespace DDD3.UI.ViewModels;
 public class MainWindowViewModel : BindableBase
 {
     private IRegionManager _regionManager;
-
+    private IDialogService _dialogService;
     private string _title = "PSamples";
     public string Title
     {
@@ -26,13 +27,15 @@ public class MainWindowViewModel : BindableBase
     public DelegateCommand SystemDateUpdateButton { get; }
     public DelegateCommand ShowViewAButton { get; }
     public DelegateCommand ShowViewPButton { get; }
+    public DelegateCommand ShowViewBButton { get; }
 
-    public MainWindowViewModel(IRegionManager regionManager)
+    public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
     {
         _regionManager = regionManager;
+        _dialogService = dialogService;
         SystemDateUpdateButton = new DelegateCommand(SystemDateUpdateButtonExecute);
         ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute);
-        ShowViewPButton = new DelegateCommand(ShowViewPButtonExecute);
+        ShowViewBButton = new DelegateCommand(ShowViewBButtonExecute);
     }
 
     private void SystemDateUpdateButtonExecute()
@@ -50,5 +53,10 @@ public class MainWindowViewModel : BindableBase
         NavigationParameters p = new();
         p.Add(nameof(ViewAViewModel.MyLabel), SystemDateLabel);
         _regionManager.RequestNavigate("ContentRegion", nameof(ViewA), p);
+    }
+
+    private void ShowViewBButtonExecute()
+    {
+        _dialogService.ShowDialog(nameof(ViewB), null, null);
     }
 }

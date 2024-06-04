@@ -1,4 +1,5 @@
-﻿using DDD3.UI.Views;
+﻿using DDD3.UI.ViewModels;
+using DDD3.UI.Views;
 using Prism.Ioc;
 using System.Windows;
 
@@ -16,5 +17,6 @@ public partial class App
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterForNavigation<ViewA>();
+        containerRegistry.RegisterDialog<ViewB, ViewBViewModel>();
     }
 }
