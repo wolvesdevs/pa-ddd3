@@ -10,6 +10,7 @@ public class MainWindowViewModel : BindableBase
 {
     private IRegionManager _regionManager;
     private IDialogService _dialogService;
+
     private string _title = "PSamples";
     public string Title
     {
@@ -35,6 +36,7 @@ public class MainWindowViewModel : BindableBase
         _dialogService = dialogService;
         SystemDateUpdateButton = new DelegateCommand(SystemDateUpdateButtonExecute);
         ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute);
+        ShowViewPButton = new DelegateCommand(ShowViewPButtonExecute);
         ShowViewBButton = new DelegateCommand(ShowViewBButtonExecute);
     }
 
@@ -57,6 +59,8 @@ public class MainWindowViewModel : BindableBase
 
     private void ShowViewBButtonExecute()
     {
-        _dialogService.ShowDialog(nameof(ViewB), null, null);
+        DialogParameters p = new();
+        p.Add(nameof(ViewBViewModel.ViewBTextBox), SystemDateLabel);
+        _dialogService.ShowDialog(nameof(ViewB), p, null);
     }
 }

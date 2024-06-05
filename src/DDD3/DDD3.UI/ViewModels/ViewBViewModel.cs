@@ -15,6 +15,13 @@ public class ViewBViewModel : BindableBase, IDialogAware
 
     public string Title => "View B";
 
+    private string _viewBTextBox = "XXX";
+    public string ViewBTextBox
+    {
+        get => _viewBTextBox;
+        set => SetProperty(ref _viewBTextBox, value);
+    }
+    //ViewBTextBox
     public event Action<IDialogResult> RequestClose;
 
     public bool CanCloseDialog()
@@ -28,5 +35,6 @@ public class ViewBViewModel : BindableBase, IDialogAware
 
     public void OnDialogOpened(IDialogParameters parameters)
     {
+        ViewBTextBox = parameters.GetValue<string>(nameof(ViewBTextBox));
     }
 }
