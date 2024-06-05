@@ -7,6 +7,7 @@
         <StackPanel>
             <Label Content="ViewB画面" FontSize="40" Foreground="Red"/>
             <TextBox Text="{Binding ViewBTextBox}"/>
+            <Button Content="OK" Command="{Binding OKButton}"/>
         </StackPanel>
     </Grid>
 </UserControl>

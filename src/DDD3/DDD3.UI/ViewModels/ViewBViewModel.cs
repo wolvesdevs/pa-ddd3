@@ -8,12 +8,8 @@ using System.Linq;
 namespace DDD3.UI.ViewModels;
 public class ViewBViewModel : BindableBase, IDialogAware
 {
-    public ViewBViewModel()
-    {
-
-    }
-
     public string Title => "View B";
+    public event Action<IDialogResult> RequestClose;
 
     private string _viewBTextBox = "XXX";
     public string ViewBTextBox
@@ -21,8 +17,13 @@ public class ViewBViewModel : BindableBase, IDialogAware
         get => _viewBTextBox;
         set => SetProperty(ref _viewBTextBox, value);
     }
-    //ViewBTextBox
-    public event Action<IDialogResult> RequestClose;
+
+    public DelegateCommand OKButton { get; }
+
+    public ViewBViewModel()
+    {
+        OKButton = new DelegateCommand(OKButtonExecute);
+    }
 
     public bool CanCloseDialog()
     {
@@ -36,5 +37,12 @@ public class ViewBViewModel : BindableBase, IDialogAware
     public void OnDialogOpened(IDialogParameters parameters)
     {
         ViewBTextBox = parameters.GetValue<string>(nameof(ViewBTextBox));
+    }
+
+    private void OKButtonExecute()
+    {
+        var p = new DialogParameters();
+        p.Add(nameof(ViewBTextBox), ViewBTextBox);
+        RequestClose?.Invoke(new DialogResult(ButtonResult.OK, p));
     }
 }
