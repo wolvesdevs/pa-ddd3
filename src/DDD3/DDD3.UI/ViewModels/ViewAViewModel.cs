@@ -4,6 +4,7 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace DDD3.UI.ViewModels;
 public class ViewAViewModel : BindableBase, INavigationAware
@@ -15,9 +16,11 @@ public class ViewAViewModel : BindableBase, INavigationAware
         set => SetProperty(ref _myLabel, value);
     }
 
+    public DelegateCommand OKButton { get; }
+
     public ViewAViewModel()
     {
-
+        OKButton = new DelegateCommand(OKButtonExecute);
     }
 
     public void OnNavigatedTo(NavigationContext navigationContext)
@@ -32,5 +35,10 @@ public class ViewAViewModel : BindableBase, INavigationAware
 
     public void OnNavigatedFrom(NavigationContext navigationContext)
     {
+    }
+
+    private void OKButtonExecute()
+    {
+        //MessageBox.Show("OKButtonExecute");
     }
 }
