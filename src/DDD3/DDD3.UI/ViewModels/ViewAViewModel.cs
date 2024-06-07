@@ -1,6 +1,8 @@
-﻿using Prism.Commands;
+﻿using DDD3.UI.Views;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,8 @@ using System.Windows;
 namespace DDD3.UI.ViewModels;
 public class ViewAViewModel : BindableBase, INavigationAware
 {
+    private IDialogService _dialogService;
+
     private string _myLabel = string.Empty;
     public string MyLabel
     {
@@ -18,8 +22,9 @@ public class ViewAViewModel : BindableBase, INavigationAware
 
     public DelegateCommand OKButton { get; }
 
-    public ViewAViewModel()
+    public ViewAViewModel(IDialogService dialogService)
     {
+        _dialogService = dialogService;
         OKButton = new DelegateCommand(OKButtonExecute);
     }
 
@@ -40,5 +45,8 @@ public class ViewAViewModel : BindableBase, INavigationAware
     private void OKButtonExecute()
     {
         //MessageBox.Show("OKButtonExecute");
+        DialogParameters p = new();
+        p.Add(nameof(ViewBViewModel.ViewBTextBox), "Saveします");
+        _dialogService.ShowDialog(nameof(ViewB), p, null);
     }
 }
