@@ -9,6 +9,7 @@
             <Label Content="{Binding MyLabel}"/>
             <TextBox/>
             <Button Content="OK" Command="{Binding OKButton}"/>
+            <Button Content="OK2" Command="{Binding OKButton2}"/>
         </StackPanel>
     </Grid>
 </UserControl>
