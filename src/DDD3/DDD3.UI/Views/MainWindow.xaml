@@ -13,7 +13,7 @@
             <Button Content="Show View A" Command="{Binding ShowViewAButton}"/>
             <Button Content="Show View A パラメータあり" Command="{Binding ShowViewPButton}"/>
             <Button Content="Show View B" Command="{Binding ShowViewBButton}"/>
-            <Button Content="Show View C: ListBox" Command="{Binding ShowViewCButton}"/>
+            <Button Content="Show View C: ListBox ComboBox" Command="{Binding ShowViewCButton}"/>
             <ContentControl prism:RegionManager.RegionName="ContentRegion" />
         </StackPanel>
     </Grid>

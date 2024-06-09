@@ -1,29 +1,29 @@
 ﻿using DDD3.UI.Services;
-using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 
 namespace DDD3.UI.ViewModels;
 public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
 {
-    #region フィールド
+    #region フィールド＆プロパティ
 
     private IMessageService _messageService;
-
-    #endregion
-
-    #region プロパティ
 
     private ObservableCollection<string> _myListBox = new();
     public ObservableCollection<string> MyListBox
     {
         get => _myListBox;
         set => SetProperty(ref _myListBox, value);
+    }
+
+    private ObservableCollection<ComboBoxViewModel> _areas = new();
+    public ObservableCollection<ComboBoxViewModel> Areas
+    {
+        get => _areas;
+        set => SetProperty(ref _areas, value);
     }
 
     #endregion
@@ -39,9 +39,15 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
         MyListBox.Add("AAA");
         MyListBox.Add("BBB");
         MyListBox.Add("CCC");
+
+        Areas.Add(new ComboBoxViewModel(1, "東京"));
+        Areas.Add(new ComboBoxViewModel(2, "大阪"));
+        Areas.Add(new ComboBoxViewModel(3, "名古屋"));
     }
 
     #endregion
+
+    #region メソッド
 
     public void ConfirmNavigationRequest(NavigationContext navigationContext, Action<bool> continuationCallback)
     {
@@ -63,4 +69,6 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
     public void OnNavigatedTo(NavigationContext navigationContext)
     {
     }
+
+    #endregion
 }
