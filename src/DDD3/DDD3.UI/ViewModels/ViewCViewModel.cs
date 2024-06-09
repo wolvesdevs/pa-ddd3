@@ -26,6 +26,13 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
         set => SetProperty(ref _areas, value);
     }
 
+    private ComboBoxViewModel _selectedArea;
+    public ComboBoxViewModel SelectedArea
+    {
+        get => _selectedArea;
+        set => SetProperty(ref _selectedArea, value);
+    }
+
     #endregion
 
     #region コンストラクタ
@@ -43,6 +50,8 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
         Areas.Add(new ComboBoxViewModel(1, "東京"));
         Areas.Add(new ComboBoxViewModel(2, "大阪"));
         Areas.Add(new ComboBoxViewModel(3, "名古屋"));
+
+        SelectedArea = Areas[1];
     }
 
     #endregion

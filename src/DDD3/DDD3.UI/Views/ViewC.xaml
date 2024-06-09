@@ -7,7 +7,8 @@
         <StackPanel>
             <Label Content="View C画面" FontSize="50"/>
             <ListBox Height="100" Width="200" Margin="10" ItemsSource="{Binding MyListBox}"/>
-            <ComboBox Width="200" SelectedValuePath="Value" DisplayMemberPath="DisplayValue" ItemsSource="{Binding Areas}"/>
+            <ComboBox Width="200" SelectedValuePath="Value" DisplayMemberPath="DisplayValue" 
+                      ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"/>
         </StackPanel>
     </Grid>
 </UserControl>
