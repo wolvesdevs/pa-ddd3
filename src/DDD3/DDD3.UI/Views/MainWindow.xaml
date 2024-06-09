@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525"
+        Title="{Binding Title}" Height="500" Width="525"
         WindowStartupLocation="CenterScreen" >
     <Grid>
         <StackPanel>
@@ -13,7 +13,7 @@
             <Button Content="Show View A" Command="{Binding ShowViewAButton}"/>
             <Button Content="Show View A パラメータあり" Command="{Binding ShowViewPButton}"/>
             <Button Content="Show View B" Command="{Binding ShowViewBButton}"/>
-            <Button Content="Show View C" Command="{Binding ShowViewCButton}"/>
+            <Button Content="Show View C: ListBox" Command="{Binding ShowViewCButton}"/>
             <ContentControl prism:RegionManager.RegionName="ContentRegion" />
         </StackPanel>
     </Grid>
