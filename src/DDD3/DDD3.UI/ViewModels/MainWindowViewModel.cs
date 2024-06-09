@@ -29,6 +29,7 @@ public class MainWindowViewModel : BindableBase
     public DelegateCommand ShowViewAButton { get; }
     public DelegateCommand ShowViewPButton { get; }
     public DelegateCommand ShowViewBButton { get; }
+    public DelegateCommand ShowViewCButton { get; }
 
     public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
     {
@@ -38,6 +39,7 @@ public class MainWindowViewModel : BindableBase
         ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute);
         ShowViewPButton = new DelegateCommand(ShowViewPButtonExecute);
         ShowViewBButton = new DelegateCommand(ShowViewBButtonExecute);
+        ShowViewCButton = new DelegateCommand(ShowViewCButtonExecute);
     }
 
     private void SystemDateUpdateButtonExecute()
@@ -71,4 +73,10 @@ public class MainWindowViewModel : BindableBase
             SystemDateLabel = dialogResult.Parameters.GetValue<string>(nameof(ViewBViewModel.ViewBTextBox));
         }
     }
+
+    private void ShowViewCButtonExecute()
+    {
+        _regionManager.RequestNavigate("ContentRegion", nameof(ViewC));
+    }
+
 }

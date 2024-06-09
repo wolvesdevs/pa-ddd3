@@ -17,6 +17,7 @@ public partial class App
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterForNavigation<ViewA>();
+        containerRegistry.RegisterForNavigation<ViewC>();
         containerRegistry.RegisterDialog<ViewB, ViewBViewModel>();
     }
 }
