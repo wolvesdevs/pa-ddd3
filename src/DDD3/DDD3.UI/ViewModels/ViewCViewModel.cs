@@ -1,4 +1,5 @@
 ﻿using DDD3.UI.Services;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -11,6 +12,8 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
     #region フィールド＆プロパティ
 
     private IMessageService _messageService;
+
+    public DelegateCommand AreaSelectionChanged { get; }
 
     private ObservableCollection<string> _myListBox = new();
     public ObservableCollection<string> MyListBox
@@ -33,6 +36,13 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
         set => SetProperty(ref _selectedArea, value);
     }
 
+    private string _selectedAreaLabel;
+    public string SelectedAreaLabel
+    {
+        get => _selectedAreaLabel;
+        set => SetProperty(ref _selectedAreaLabel, value);
+    }
+
     #endregion
 
     #region コンストラクタ
@@ -52,6 +62,8 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
         Areas.Add(new ComboBoxViewModel(3, "名古屋"));
 
         SelectedArea = Areas[1];
+
+        AreaSelectionChanged = new DelegateCommand(AreaSelectionChangedExecute);
     }
 
     #endregion
@@ -77,6 +89,12 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
 
     public void OnNavigatedTo(NavigationContext navigationContext)
     {
+    }
+
+
+    private void AreaSelectionChangedExecute()
+    {
+        SelectedAreaLabel = SelectedArea.Value + " : " + SelectedArea.DisplayValue;
     }
 
     #endregion
