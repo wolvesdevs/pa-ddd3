@@ -18,6 +18,13 @@ public class MainWindowViewModel : BindableBase
         set => SetProperty(ref _title, value);
     }
 
+    private bool _buttonEnabled = false;
+    public bool ButtonEnabled
+    {
+        get => _buttonEnabled;
+        set => SetProperty(ref _buttonEnabled, value);
+    }
+
     private string _systemDateLabel = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
     public string SystemDateLabel
     {
@@ -36,7 +43,7 @@ public class MainWindowViewModel : BindableBase
         _regionManager = regionManager;
         _dialogService = dialogService;
         SystemDateUpdateButton = new DelegateCommand(SystemDateUpdateButtonExecute);
-        ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute);
+        ShowViewAButton = new DelegateCommand(ShowViewAButtonExecute).ObservesCanExecute(() => ButtonEnabled);
         ShowViewPButton = new DelegateCommand(ShowViewPButtonExecute);
         ShowViewBButton = new DelegateCommand(ShowViewBButtonExecute);
         ShowViewCButton = new DelegateCommand(ShowViewCButtonExecute);
@@ -44,6 +51,7 @@ public class MainWindowViewModel : BindableBase
 
     private void SystemDateUpdateButtonExecute()
     {
+        ButtonEnabled = true;
         SystemDateLabel = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
     }
 
