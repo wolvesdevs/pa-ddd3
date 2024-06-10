@@ -10,7 +10,7 @@ namespace DDDNET8.WPF.ViewModels
     {
         private IRegionManager _regionManager;
 
-        private DelegateCommand WeatherLatestButton { get; }
+        public DelegateCommand WeatherLatestButton { get; }
 
         private string _title = "DDD";
         public string Title

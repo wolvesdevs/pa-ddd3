@@ -17,20 +17,7 @@ namespace DDDNET8.WPF.ViewModels
         private IWeatherRepository _weatherRepository;
         private IAreasRepository _areasRepositoty;
 
-        public WeatherLatestViewModel() : this(new WeatherSqlServer(), new AreasSqlServer())
-        {
-        }
-
-        public WeatherLatestViewModel(IWeatherRepository weather, IAreasRepository areas)
-        {
-            _weatherRepository = weather;
-            _areasRepositoty = areas;
-
-            foreach (var area in _areasRepositoty.GetData())
-            {
-                Areas.Add(area);
-            }
-        }
+        public DelegateCommand LatestButton { get; }
 
         private ObservableCollection<AreaEntity> _areas = new();
         public ObservableCollection<AreaEntity> Areas
@@ -67,7 +54,26 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _temperatureText, value);
         }
 
-        public void Search()
+        #region コンストラクタ
+
+        public WeatherLatestViewModel() : this(new WeatherSqlServer(), new AreasSqlServer()) { }
+
+        public WeatherLatestViewModel(IWeatherRepository weather, IAreasRepository areas)
+        {
+            _weatherRepository = weather;
+            _areasRepositoty = areas;
+
+            foreach (var area in _areasRepositoty.GetData())
+            {
+                Areas.Add(area);
+            }
+
+            LatestButton = new DelegateCommand(LatestButtonExecute);
+        }
+
+        #endregion
+
+        private void LatestButtonExecute()
         {
             if (SelectedArea == null)
             {
