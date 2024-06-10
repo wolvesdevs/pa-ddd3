@@ -12,6 +12,7 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
     #region フィールド＆プロパティ
 
     private IMessageService _messageService;
+    private MainWindowViewModel _mainWindowViewModel;
 
     public DelegateCommand<object[]> AreaSelectionChanged { get; }
 
@@ -47,11 +48,12 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
 
     #region コンストラクタ
 
-    public ViewCViewModel() : this(new MessageService()) { }
+    public ViewCViewModel(MainWindowViewModel mainWindowViewModel) : this(new MessageService(), mainWindowViewModel) { }
 
-    public ViewCViewModel(IMessageService messageService)
+    public ViewCViewModel(IMessageService messageService, MainWindowViewModel mainWindowViewModel)
     {
         _messageService = messageService;
+        _mainWindowViewModel = mainWindowViewModel;
 
         MyListBox.Add("AAA");
         MyListBox.Add("BBB");
@@ -95,6 +97,8 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
     private void AreaSelectionChangedExecute(object items)
     {
         SelectedAreaLabel = SelectedArea.Value + " : " + SelectedArea.DisplayValue;
+
+        _mainWindowViewModel.Title = SelectedAreaLabel;
     }
 
     #endregion
