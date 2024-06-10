@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDDNET8.Domain\DDDNET8.Domain.csproj" />
+    <ProjectReference Include="..\DDDNET8.Infrastructure\DDDNET8.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
