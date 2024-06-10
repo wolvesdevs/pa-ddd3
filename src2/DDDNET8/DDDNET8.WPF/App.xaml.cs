@@ -16,7 +16,7 @@ namespace DDDNET8.WPF
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterForNavigation<WeatherLatestView>();
         }
     }
 }

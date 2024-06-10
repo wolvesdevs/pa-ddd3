@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="直近値" Width="100"/>
+                <Button Content="直近値" Width="100" Command="{Binding WeatherLatestButton}"/>
             </StackPanel>
             <ContentControl prism:RegionManager.RegionName="ContentRegion" />
         </StackPanel>
