@@ -13,7 +13,7 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
 
     private IMessageService _messageService;
 
-    public DelegateCommand AreaSelectionChanged { get; }
+    public DelegateCommand<object[]> AreaSelectionChanged { get; }
 
     private ObservableCollection<string> _myListBox = new();
     public ObservableCollection<string> MyListBox
@@ -63,7 +63,7 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
 
         SelectedArea = Areas[1];
 
-        AreaSelectionChanged = new DelegateCommand(AreaSelectionChangedExecute);
+        AreaSelectionChanged = new DelegateCommand<object[]>(AreaSelectionChangedExecute);
     }
 
     #endregion
@@ -92,7 +92,7 @@ public class ViewCViewModel : BindableBase, IConfirmNavigationRequest
     }
 
 
-    private void AreaSelectionChangedExecute()
+    private void AreaSelectionChangedExecute(object items)
     {
         SelectedAreaLabel = SelectedArea.Value + " : " + SelectedArea.DisplayValue;
     }

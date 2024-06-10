@@ -9,10 +9,10 @@
             <Label Content="View C画面" FontSize="50"/>
             <ListBox Height="100" Width="200" Margin="10" ItemsSource="{Binding MyListBox}"/>
             <ComboBox Width="200" SelectedValuePath="Value" DisplayMemberPath="DisplayValue" 
-                      ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}">
+                      ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" SelectionChanged="ComboBox_SelectionChanged">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <prism:InvokeCommandAction Command="{Binding AreaSelectionChanged}"/>
+                        <prism:InvokeCommandAction Command="{Binding AreaSelectionChanged}" TriggerParameterPath="AddedItems"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
