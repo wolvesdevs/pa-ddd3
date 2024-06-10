@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="DDDNET8.WPF.Views.LatestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="地域" FontSize="20" Width="200"/>
+                <ComboBox FontSize="20" Width="200" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"/>
+            </StackPanel>
+        </StackPanel> 
+    </Grid>
+</UserControl>
