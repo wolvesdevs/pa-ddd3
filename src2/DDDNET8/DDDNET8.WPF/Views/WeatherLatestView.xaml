@@ -7,7 +7,9 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="地域" FontSize="20" Width="200"/>
-                <ComboBox FontSize="20" Width="200" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"/>
+                <ComboBox FontSize="20" Width="200" 
+                          ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"
+                          SelectedValuePath="AreaId" DisplayMemberPath="AreaName"/>
             </StackPanel>
         </StackPanel>
     </Grid>

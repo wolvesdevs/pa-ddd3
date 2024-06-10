@@ -1,4 +1,5 @@
 ﻿using DDDNET8.Domain.Entities;
+using DDDNET8.Domain.Exceptions;
 using DDDNET8.Domain.Repositories;
 using DDDNET8.Infrastructure.SqlServer;
 using Prism.Commands;
@@ -31,11 +32,18 @@ namespace DDDNET8.WPF.ViewModels
             }
         }
 
-        private object _selectedAreaId = 1;
-        public object SelectedAreaId
+        private ObservableCollection<AreaEntity> _areas = new();
+        public ObservableCollection<AreaEntity> Areas
         {
-            get => _selectedAreaId;
-            set => SetProperty(ref _selectedAreaId, value);
+            get => _areas;
+            set => SetProperty(ref _areas, value);
+        }
+
+        private AreaEntity _selectedArea;
+        public AreaEntity SelectedArea
+        {
+            get => _selectedArea;
+            set => SetProperty(ref _selectedArea, value);
         }
 
         private string _dataDateText = string.Empty;
@@ -59,16 +67,14 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _temperatureText, value);
         }
 
-        private ObservableCollection<AreaEntity> _areas = new();
-        public ObservableCollection<AreaEntity> Areas
-        {
-            get => _areas;
-            set => SetProperty(ref _areas, value);
-        }
-
         public void Search()
         {
-            var entity = _weatherRepository.GetLatest(Convert.ToInt32(_selectedAreaId));
+            if (SelectedArea == null)
+            {
+                throw new InputException("地域を選択してください。");
+            }
+
+            var entity = _weatherRepository.GetLatest(SelectedArea.AreaId);
 
             if (entity == null)
             {
