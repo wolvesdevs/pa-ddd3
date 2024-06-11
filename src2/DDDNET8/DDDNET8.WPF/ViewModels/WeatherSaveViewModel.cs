@@ -3,6 +3,7 @@ using DDDNET8.Domain.Helpers;
 using DDDNET8.Domain.Repositories;
 using DDDNET8.Domain.ValueObjects;
 using DDDNET8.Infrastructure.SqlServer;
+using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
@@ -15,6 +16,10 @@ namespace DDDNET8.WPF.ViewModels
         private IAreasRepository _areasRespository;
 
         public event Action<IDialogResult> RequestClose;
+
+        public DelegateCommand SaveButton { get; }
+
+        public string Title => "登録画面";
 
         private AreaEntity _selectedArea;
         public AreaEntity SelectedArea
@@ -32,7 +37,12 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _selectedCondition, value);
         }
 
-        public string TemperatureText { get; set; } = string.Empty;
+        private string _temperatureText;
+        public string TemperatureText
+        {
+            get => _temperatureText;
+            set => SetProperty(ref _temperatureText, value);
+        }
 
         private ObservableCollection<AreaEntity> _areas = new();
         public ObservableCollection<AreaEntity> Areas
@@ -48,9 +58,7 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _conditions, value);
         }
 
-        public string TemperatureUnitName { get; set; } = Temperature.UnitName;
-
-        public string Title => "登録画面";
+        public string TemperatureUnitName => Temperature.UnitName;
 
         #region コンストラクタ
 
@@ -62,16 +70,20 @@ namespace DDDNET8.WPF.ViewModels
             _areasRespository = areas;
 
             DataDateValue = GetDateTime();
+            SelectedCondition = Condition.Sunny;
+            TemperatureText = string.Empty;
 
             foreach (var area in _areasRespository.GetData())
             {
                 Areas.Add(area);
             }
+
+            SaveButton = new DelegateCommand(SaveExecute);
         }
 
         #endregion
 
-        public void Save()
+        private void SaveExecute()
         {
             Guard.IsNull(SelectedArea, "エリアを選択してください");
             Guard.IsNull(DataDateValue, "日時を入力してください");

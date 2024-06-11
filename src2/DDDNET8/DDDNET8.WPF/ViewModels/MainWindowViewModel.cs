@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 
 namespace DDDNET8.WPF.ViewModels
@@ -9,6 +10,7 @@ namespace DDDNET8.WPF.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private IRegionManager _regionManager;
+        private IDialogService _dialogService;
 
         public DelegateCommand WeatherLatestButton { get; }
         public DelegateCommand WeatherListButton { get; }
@@ -21,9 +23,10 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _title, value);
         }
 
-        public MainWindowViewModel(IRegionManager regionManager)
+        public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             _regionManager = regionManager;
+            _dialogService = dialogService;
 
             WeatherLatestButton = new DelegateCommand(WeatherLatestButtonExecute);
             WeatherListButton = new DelegateCommand(WeatherListButtonExecute);
@@ -42,7 +45,7 @@ namespace DDDNET8.WPF.ViewModels
 
         private void WeatherSaveButtonExecute()
         {
-
+            _dialogService.ShowDialog(nameof(WeatherSaveView), null, null);
         }
     }
 }
