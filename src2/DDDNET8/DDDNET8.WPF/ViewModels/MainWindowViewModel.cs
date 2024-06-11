@@ -11,6 +11,7 @@ namespace DDDNET8.WPF.ViewModels
         private IRegionManager _regionManager;
 
         public DelegateCommand WeatherLatestButton { get; }
+        public DelegateCommand WeatherListButton { get; }
 
         private string _title = "DDD";
         public string Title
@@ -24,11 +25,17 @@ namespace DDDNET8.WPF.ViewModels
             _regionManager = regionManager;
 
             WeatherLatestButton = new DelegateCommand(WeatherLatestButtonExecute);
+            WeatherListButton = new DelegateCommand(WeatherListButtonExecute);
         }
 
         private void WeatherLatestButtonExecute()
         {
             _regionManager.RequestNavigate("ContentRegion", nameof(WeatherLatestView));
+        }
+
+        private void WeatherListButtonExecute()
+        {
+            _regionManager.RequestNavigate("ContentRegion", nameof(WeatherListView));
         }
     }
 }
