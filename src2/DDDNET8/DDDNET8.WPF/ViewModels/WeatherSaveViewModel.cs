@@ -24,7 +24,14 @@ namespace DDDNET8.WPF.ViewModels
         }
 
         public DateTime? DataDateValue { get; set; }
-        public object SelectedCondition { get; set; } = Condition.Sunny.Value;
+
+        private Condition _selectedCondition;
+        public Condition SelectedCondition
+        {
+            get => _selectedCondition;
+            set => SetProperty(ref _selectedCondition, value);
+        }
+
         public string TemperatureText { get; set; } = string.Empty;
 
         private ObservableCollection<AreaEntity> _areas = new();

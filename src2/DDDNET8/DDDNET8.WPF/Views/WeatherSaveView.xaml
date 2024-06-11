@@ -17,6 +17,12 @@
                 <DatePicker FontSize="20" Width="200"
                             SelectedDate="{Binding DataDateValue}"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="状態" FontSize="20" Width="200"/>
+                <ComboBox FontSize="20" Width="200" 
+                          ItemsSource="{Binding Condition}" SelectedItem="{Binding SelectedCondition}"
+                          SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
