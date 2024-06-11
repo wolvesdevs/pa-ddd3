@@ -1,6 +1,8 @@
 ﻿using DDDNET8.Domain.Repositories;
 using DDDNET8.Infrastructure.SqlServer;
+using Prism.Commands;
 using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -9,6 +11,8 @@ namespace DDDNET8.WPF.ViewModels
     public class WeatherListViewModel : BindableBase
     {
         private IWeatherRepository _weather;
+
+        public DelegateCommand UpdateButton { get; }
 
         private ObservableCollection<WeatherListViewModelWeather> _weathers = new();
         public ObservableCollection<WeatherListViewModelWeather> Weathers
@@ -32,6 +36,17 @@ namespace DDDNET8.WPF.ViewModels
         {
             _weather = weather;
             Weathers = new(_weather.GetData().Select(entity => new WeatherListViewModelWeather(entity)).ToList());
+
+            UpdateButton = new DelegateCommand(UpdateButtonExecute);
+        }
+
+        #endregion
+
+        #region メソッド
+
+        private void UpdateButtonExecute()
+        {
+
         }
 
         #endregion
