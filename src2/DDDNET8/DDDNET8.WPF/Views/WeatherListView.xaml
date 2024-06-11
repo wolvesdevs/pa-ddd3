@@ -4,7 +4,8 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <DataGrid ItemsSource="{Binding Weathers}" AutoGenerateColumns="False" MinRowHeight="30" FontSize="16" IsReadOnly="True">
+        <DataGrid ItemsSource="{Binding Weathers}" SelectedItem="{Binding SelectedWeather}"
+                  AutoGenerateColumns="False" MinRowHeight="30" FontSize="16" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="エリアID" Binding="{Binding AreaId}" Width="100">
                     <DataGridTextColumn.HeaderStyle>

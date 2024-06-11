@@ -4,11 +4,7 @@ using DDDNET8.Domain.Repositories;
 using DDDNET8.Infrastructure.SqlServer;
 using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 
 namespace DDDNET8.WPF.ViewModels
 {

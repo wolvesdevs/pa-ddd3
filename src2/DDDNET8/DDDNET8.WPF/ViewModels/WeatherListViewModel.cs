@@ -17,6 +17,13 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _weathers, value);
         }
 
+        private WeatherListViewModelWeather _selectedWeather;
+        public WeatherListViewModelWeather SelectedWeather
+        {
+            get => _selectedWeather;
+            set => SetProperty(ref _selectedWeather, value);
+        }
+
         #region コンストラクタ
 
         public WeatherListViewModel() : this(new WeatherSqlServer()) { }
