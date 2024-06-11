@@ -9,13 +9,14 @@
             <Button Content="更新" Width="100" Command="{Binding UpdateButton}"/>
             <DataGrid ItemsSource="{Binding Weathers}" SelectedItem="{Binding SelectedWeather}"
                   AutoGenerateColumns="False" MinRowHeight="30" FontSize="16" IsReadOnly="True">
-                
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <prism:InvokeCommandAction Command="{Binding DataGridSelectionChanged}"/>
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <prism:InvokeCommandAction Command="{Binding DataGridMouseDoubleClick}"/>
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="エリアID" Binding="{Binding AreaId}" Width="100">
                         <DataGridTextColumn.HeaderStyle>
