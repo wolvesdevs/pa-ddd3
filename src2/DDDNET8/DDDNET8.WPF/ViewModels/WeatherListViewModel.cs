@@ -13,6 +13,7 @@ namespace DDDNET8.WPF.ViewModels
         private IWeatherRepository _weather;
 
         public DelegateCommand UpdateButton { get; }
+        public DelegateCommand DataGridSelectionChanged { get; }
 
         private ObservableCollection<WeatherListViewModelWeather> _weathers = new();
         public ObservableCollection<WeatherListViewModelWeather> Weathers
@@ -38,6 +39,7 @@ namespace DDDNET8.WPF.ViewModels
             Weathers = new(_weather.GetData().Select(entity => new WeatherListViewModelWeather(entity)).ToList());
 
             UpdateButton = new DelegateCommand(UpdateButtonExecute);
+            DataGridSelectionChanged = new DelegateCommand(DataGridSelectionChangedExecute);
         }
 
         #endregion
@@ -45,6 +47,11 @@ namespace DDDNET8.WPF.ViewModels
         #region メソッド
 
         private void UpdateButtonExecute()
+        {
+
+        }
+
+        private void DataGridSelectionChangedExecute()
         {
 
         }
