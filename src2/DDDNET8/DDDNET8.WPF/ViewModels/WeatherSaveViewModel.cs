@@ -3,7 +3,6 @@ using DDDNET8.Domain.Helpers;
 using DDDNET8.Domain.Repositories;
 using DDDNET8.Domain.ValueObjects;
 using DDDNET8.Infrastructure.SqlServer;
-using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
@@ -17,7 +16,13 @@ namespace DDDNET8.WPF.ViewModels
 
         public event Action<IDialogResult> RequestClose;
 
-        public object SelectedAreaId { get; set; }
+        private AreaEntity _selectedArea;
+        public AreaEntity SelectedArea
+        {
+            get => _selectedArea;
+            set => SetProperty(ref _selectedArea, value);
+        }
+
         public DateTime DataDateValue { get; set; }
         public object SelectedCondition { get; set; } = Condition.Sunny.Value;
         public string TemperatureText { get; set; } = string.Empty;
@@ -61,11 +66,11 @@ namespace DDDNET8.WPF.ViewModels
 
         public void Save()
         {
-            Guard.IsNull(SelectedAreaId, "エリアを選択してください");
+            Guard.IsNull(SelectedArea, "エリアを選択してください");
             var temperature = Guard.IsFloat(TemperatureText, "温度の入力に誤りがあります");
 
             var entity = new WeatherEntity(
-                Convert.ToInt32(SelectedAreaId),
+                SelectedArea.AreaId,
                 DataDateValue,
                 Convert.ToInt32(SelectedCondition),
                 temperature

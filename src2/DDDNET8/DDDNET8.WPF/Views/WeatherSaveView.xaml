@@ -4,6 +4,14 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-            
+        <StackPanel>
+            <Button Content="Save" FontSize="20" Width="150" Command="{Binding SaveButton}"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="地域" FontSize="20" Width="200" />
+                <ComboBox FontSize="20" Width="200" 
+                          ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"
+                          SelectedValuePath="AreaId" DisplayMemberPath="AreaName"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
