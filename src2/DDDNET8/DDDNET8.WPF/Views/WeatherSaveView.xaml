@@ -12,6 +12,11 @@
                           ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}"
                           SelectedValuePath="AreaId" DisplayMemberPath="AreaName"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="日時" FontSize="20" Width="200"/>
+                <DatePicker FontSize="20" Width="200"
+                            SelectedDate="{Binding DataDateValue}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
