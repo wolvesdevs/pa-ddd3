@@ -3,6 +3,7 @@ using DDDNET8.Domain.Helpers;
 using DDDNET8.Domain.Repositories;
 using DDDNET8.Domain.ValueObjects;
 using DDDNET8.Infrastructure.SqlServer;
+using DDDNET8.WPF.Services;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -14,6 +15,7 @@ namespace DDDNET8.WPF.ViewModels
     {
         private IWeatherRepository _weatherRepository;
         private IAreasRepository _areasRespository;
+        private IMessageService _messageService;
 
         public event Action<IDialogResult> RequestClose;
 
@@ -62,12 +64,13 @@ namespace DDDNET8.WPF.ViewModels
 
         #region コンストラクタ
 
-        public WeatherSaveViewModel() : this(new WeatherSqlServer(), new AreasSqlServer()) { }
+        public WeatherSaveViewModel() : this(new WeatherSqlServer(), new AreasSqlServer(), new MessageService()) { }
 
-        public WeatherSaveViewModel(IWeatherRepository weather, IAreasRepository areas)
+        public WeatherSaveViewModel(IWeatherRepository weather, IAreasRepository areas, IMessageService messageService)
         {
             _weatherRepository = weather;
             _areasRespository = areas;
+            _messageService = messageService;
 
             DataDateValue = GetDateTime();
             SelectedCondition = Condition.Sunny;
@@ -89,6 +92,11 @@ namespace DDDNET8.WPF.ViewModels
             Guard.IsNull(DataDateValue, "日時を入力してください");
             var temperature = Guard.IsFloat(TemperatureText, "温度の入力に誤りがあります");
 
+            if(_messageService.Question("登録しますか？") != System.Windows.MessageBoxResult.OK)
+            {
+                return;
+            }
+
             var entity = new WeatherEntity(
                 SelectedArea.AreaId,
                 DataDateValue.Value,
@@ -97,6 +105,8 @@ namespace DDDNET8.WPF.ViewModels
                 );
 
             _weatherRepository.Save(entity);
+
+            _messageService.ShowDialog("登録しました。");
         }
 
         public bool CanCloseDialog()
