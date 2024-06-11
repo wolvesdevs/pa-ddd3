@@ -20,7 +20,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="状態" FontSize="20" Width="200"/>
                 <ComboBox FontSize="20" Width="200" 
-                          ItemsSource="{Binding Condition}" SelectedItem="{Binding SelectedCondition}"
+                          ItemsSource="{Binding Conditions}" SelectedItem="{Binding SelectedCondition}"
                           SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">

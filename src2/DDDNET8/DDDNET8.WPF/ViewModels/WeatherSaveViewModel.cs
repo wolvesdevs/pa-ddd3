@@ -92,7 +92,7 @@ namespace DDDNET8.WPF.ViewModels
             var entity = new WeatherEntity(
                 SelectedArea.AreaId,
                 DataDateValue.Value,
-                Convert.ToInt32(SelectedCondition),
+                SelectedCondition.Value,
                 temperature
                 );
 
