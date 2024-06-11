@@ -23,6 +23,13 @@ namespace DDDNET8.WPF.ViewModels
             set => SetProperty(ref _title, value);
         }
 
+        private string _statusLabel = "--";
+        public string StatusLabel
+        {
+            get => _statusLabel;
+            set => SetProperty(ref _statusLabel, value);
+        }
+
         public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             _regionManager = regionManager;

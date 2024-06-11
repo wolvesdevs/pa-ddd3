@@ -4,7 +4,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
+    <Grid Margin="5">
         <StackPanel>
             <Button Content="更新" Width="100" Command="{Binding UpdateButton}"/>
             <DataGrid ItemsSource="{Binding Weathers}" SelectedItem="{Binding SelectedWeather}"

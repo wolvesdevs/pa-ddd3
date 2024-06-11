@@ -54,6 +54,7 @@ namespace DDDNET8.WPF
             containerRegistry.RegisterForNavigation<WeatherLatestView>();
             containerRegistry.RegisterForNavigation<WeatherListView>();
             containerRegistry.RegisterDialog<WeatherSaveView, WeatherSaveViewModel>();
+            containerRegistry.RegisterSingleton<MainWindowViewModel>();
         }
     }
 }

@@ -8,7 +8,7 @@
     
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="5">
                 <Button Content="直近値" Width="100" Command="{Binding WeatherLatestButton}"/>
                 <Button Content="List" Width="100" Command="{Binding WeatherListButton}"/>
                 <Button Content="追加" Width="100" Command="{Binding WeatherSaveButton}"/>

@@ -11,6 +11,7 @@ namespace DDDNET8.WPF.ViewModels
     public class WeatherListViewModel : ViewModelBase
     {
         private IWeatherRepository _weather;
+        private MainWindowViewModel _mainWindowViewModel;
 
         public DelegateCommand UpdateButton { get; }
         public DelegateCommand DataGridSelectionChanged { get; }
@@ -32,11 +33,13 @@ namespace DDDNET8.WPF.ViewModels
 
         #region コンストラクタ
 
-        public WeatherListViewModel() : this(new WeatherSqlServer()) { }
+        public WeatherListViewModel(MainWindowViewModel mainWindowViewModel) : this(new WeatherSqlServer(), mainWindowViewModel) { }
 
-        public WeatherListViewModel(IWeatherRepository weather)
+        public WeatherListViewModel(IWeatherRepository weather, MainWindowViewModel mainWindowViewModel)
         {
             _weather = weather;
+            _mainWindowViewModel = mainWindowViewModel;
+
             Weathers = new(_weather.GetData().Select(entity => new WeatherListViewModelWeather(entity)).ToList());
 
             UpdateButton = new DelegateCommand(UpdateButtonExecute);
@@ -50,7 +53,7 @@ namespace DDDNET8.WPF.ViewModels
 
         private void UpdateButtonExecute()
         {
-
+            _mainWindowViewModel.StatusLabel = "更新しました。";
         }
 
         private void DataGridSelectionChangedExecute()
