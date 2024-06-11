@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace DDDNET8.WPF.ViewModels
 {
-    public class WeatherLatestViewModel : BindableBase
+    public class WeatherLatestViewModel : ViewModelBase
     {
         private IWeatherRepository _weatherRepository;
         private IAreasRepository _areasRepositoty;

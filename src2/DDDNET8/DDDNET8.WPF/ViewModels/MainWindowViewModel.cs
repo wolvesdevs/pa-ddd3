@@ -2,15 +2,17 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
 
 namespace DDDNET8.WPF.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private IRegionManager _regionManager;
 
         public DelegateCommand WeatherLatestButton { get; }
         public DelegateCommand WeatherListButton { get; }
+        public DelegateCommand WeatherSaveButton { get; }
 
         private string _title = "DDD";
         public string Title
@@ -25,6 +27,7 @@ namespace DDDNET8.WPF.ViewModels
 
             WeatherLatestButton = new DelegateCommand(WeatherLatestButtonExecute);
             WeatherListButton = new DelegateCommand(WeatherListButtonExecute);
+            WeatherSaveButton = new DelegateCommand(WeatherSaveButtonExecute);
         }
 
         private void WeatherLatestButtonExecute()
@@ -35,6 +38,11 @@ namespace DDDNET8.WPF.ViewModels
         private void WeatherListButtonExecute()
         {
             _regionManager.RequestNavigate("ContentRegion", nameof(WeatherListView));
+        }
+
+        private void WeatherSaveButtonExecute()
+        {
+
         }
     }
 }

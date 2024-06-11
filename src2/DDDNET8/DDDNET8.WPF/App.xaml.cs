@@ -1,4 +1,5 @@
 ﻿using DDDNET8.Domain.Exceptions;
+using DDDNET8.WPF.ViewModels;
 using DDDNET8.WPF.Views;
 using Prism.Ioc;
 using System.Windows;
@@ -52,6 +53,7 @@ namespace DDDNET8.WPF
         {
             containerRegistry.RegisterForNavigation<WeatherLatestView>();
             containerRegistry.RegisterForNavigation<WeatherListView>();
+            containerRegistry.RegisterDialog<WeatherSaveView, WeatherSaveViewModel>();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DDDNET8.WPF.ViewModels
 {
-    public class WeatherListViewModel : BindableBase
+    public class WeatherListViewModel : ViewModelBase
     {
         private IWeatherRepository _weather;
 
